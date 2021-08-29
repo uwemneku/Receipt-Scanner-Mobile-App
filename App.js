@@ -1,14 +1,17 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import LoginRegister from './Screens/LoginRegister';
-import Onboarding from './Screens/Onboarding';
+import RootNavigation from './Navigation/RootNavigation';
+import RegisterScreen from './Screens/RegisterScreen';
 
 export default function App() {
   return (
     <View style={styles.container}>
-        <LoginRegister />
       <StatusBar style="auto" />
+      <NavigationContainer>
+        <RootNavigation />
+      </NavigationContainer>
     </View>
   );
 }

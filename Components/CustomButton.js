@@ -1,15 +1,14 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Typography from './Typography'
 
 const CustomButton = ({title = '', variant, bgColor='white', outline}) => {
     return (
-        <TouchableOpacity 
+        <View 
             style={[styles.container, {backgroundColor: outline ? 'transparent' : bgColor, borderColor:bgColor, borderWidth:outline ? 2 : 0}]}
-            activeOpacity ={0.8}
         >
-            <Typography text={title} textAlign="center" color={outline ? 'white' : '#404CCF'} />
-        </TouchableOpacity>
+            <Typography text={title} textAlign="center" color={outline ? 'white' : bgColor === 'white' ? '#404CCF' : 'white'} />
+        </View>
     )
 }
 

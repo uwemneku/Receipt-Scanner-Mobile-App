@@ -1,9 +1,10 @@
 import React from 'react'
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Carousel from './../Components/Carousel';
 import {chart, location, receiptsfiles} from '../assets/Images/index';
 import Typography from '../Components/Typography';
 import CustomButton from '../Components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 const W = Dimensions.get('screen').width
 const H = Dimensions.get('screen').height
@@ -22,6 +23,7 @@ const images = [
         },
     ]
 const Onboarding = () => {
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <Carousel>
@@ -43,8 +45,12 @@ const Onboarding = () => {
             }                
             </Carousel>
             <View style={styles.buttons} >
-                <CustomButton title='Get Started' />
-                <CustomButton title='Login' bgColor='white' outline />
+                <TouchableOpacity activeOpacity ={0.8} onPress={()=>navigation.navigate('LoginRegister')} >
+                    <CustomButton title='Get Started' />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity ={0.8} onPress={()=>navigation.navigate('LoginScreen')} >
+                    <CustomButton title='Login' bgColor='white' outline />
+                </TouchableOpacity>
             </View>
         </View>
     )

@@ -1,10 +1,12 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import {primaryLogo} from '../assets/Images'
 import CustomButton from '../Components/CustomButton'
 import Typography from '../Components/Typography'
 
 const LoginRegister = () => {
+    const navigation = useNavigation()
     return (
         <View style={styles.container} >
             <View style={{marginBottom:40}} >
@@ -12,8 +14,12 @@ const LoginRegister = () => {
                 <Typography text="No more paper receipt!" color='white' textAlign='center' />
             </View>
             <View style={styles.buttons} >
+                <TouchableOpacity activeOpacity={0.8} onPress={()=>navigation.navigate('LoginScreen')} >
                 <CustomButton title="Login" outline />
-                <CustomButton title="Register" />
+                </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.8} onPress={()=>navigation.navigate('RegisterScreen')} >
+                    <CustomButton title="Register" />
+                </TouchableOpacity>
             </View>
         </View>
     )
