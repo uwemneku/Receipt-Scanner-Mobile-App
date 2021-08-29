@@ -8,7 +8,7 @@ const CustomButton = ({title = '', variant, bgColor='white', outline}) => {
             style={[styles.container, {backgroundColor: outline ? 'transparent' : bgColor, borderColor:bgColor, borderWidth:outline ? 2 : 0}]}
             activeOpacity ={0.8}
         >
-            <Typography text={title} textAlign="center" color={outline ? 'white' : 'black'} />
+            <Typography text={title} textAlign="center" color={outline ? 'white' : '#404CCF'} />
         </TouchableOpacity>
     )
 }
