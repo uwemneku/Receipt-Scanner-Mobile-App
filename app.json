@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Receipt_scanner",
+    "slug": "Receipt_scanner",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "Receipt_scanner"
+}
