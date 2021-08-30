@@ -1,6 +1,3 @@
-const  y = {t:'rrr', y:'fffff', u:'fff', o:'gggg'}
+const y = [1, 3, 3].concat([])
 
-const {t, ...r} = y
-
-console.log(t);
-console.log(r);
+console.log(y)

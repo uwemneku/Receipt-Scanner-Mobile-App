@@ -5,6 +5,7 @@ import LoginRegister from '../Screens/LoginRegister';
 import RegisterScreen from '../Screens/RegisterScreen';
 import {createStackNavigator} from '@react-navigation/stack'
 import LoginScreen from '../Screens/LoginScreen';
+import VerifyOTP from '../Screens/VerifyOTP';
 
 const Stack = createStackNavigator()
 
@@ -24,6 +25,10 @@ const screens = [
     {
         name: 'LoginScreen',
         component: LoginScreen
+    },
+    {
+        name: 'VerifyOTP',
+        component: VerifyOTP
     },
 ]
 const RootNavigation = () => {

@@ -4,9 +4,11 @@ import {secondaryLogo, primaryLogo} from '../assets/Images'
 import CustomButton from '../Components/CustomButton'
 import Typography from '../Components/Typography'
 import { Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'
 
 const H = Dimensions.get('window').height
 const RegisterScreen = () => {
+    const navigation = useNavigation()
     return (
         <ScrollView style={{flex:1, backgroundColor:'white'}} contentContainerStyle={{height:H, padding:20}} showsVerticalScrollIndicator={false} >
             <View style={styles.container} >
@@ -26,7 +28,7 @@ const RegisterScreen = () => {
                 <PassWordInput />
             </View>
             <View style={{width:'100%'}} >
-                <TouchableOpacity activeOpacity={0.8} >
+                <TouchableOpacity activeOpacity={0.8} onPress={()=>navigation.navigate('VerifyOTP')}  >
                     <CustomButton title='Continue' bgColor='#404CCF' />
                 </TouchableOpacity>
             </View>

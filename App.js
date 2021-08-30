@@ -4,6 +4,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import RootNavigation from './Navigation/RootNavigation';
 import RegisterScreen from './Screens/RegisterScreen';
+import VerifyOTP from './Screens/VerifyOTP';
 
 export default function App() {
   return (
