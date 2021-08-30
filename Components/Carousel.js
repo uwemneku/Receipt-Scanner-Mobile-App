@@ -15,10 +15,9 @@ const Carousel = ({children}) => {
     })
 
     useEffect(() => {
-        let index = 1
+        let index = 0
         setInterval(() => {
             index = index > children.length-2 ? 0: index+1 
-            console.log(index);
             scrollRef.current.scrollTo({x:W*index, y:0, animated:true})
         }, 2000);
     }, [])
