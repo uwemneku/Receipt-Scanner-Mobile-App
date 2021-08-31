@@ -63,7 +63,7 @@ const VerifyOTP = () => {
                         autoFocus={true} 
                         value={OTP.join('')} 
                         onChangeText={handleTextInput} 
-                        style={{position:'absolute', zIndex:10, opacity:0, width:'100%', height: '100%'}} 
+                        style={{position:'absolute', zIndex:10, opacity:0, width:'100%', height: '150%'}} 
                         keyboardType='numeric'
                          
                     />
@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
         borderRadius:16,
         zIndex:-1,
         backgroundColor: 'whitesmoke',
-        elevation:2,
         alignItems:'center',
         justifyContent:'center'
     },

@@ -18,7 +18,9 @@ import { Text } from 'react-native'
                     fontSize: fontSize,
                     color: color,
                     fontWeight: bold ? 'bold' : 'normal',
-                    textAlign:textAlign
+                    textAlign:textAlign,
+                    includeFontPadding:false
+
                 }}
             >
                 {text}

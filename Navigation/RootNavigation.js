@@ -1,51 +1,36 @@
+import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Onboarding from '../Screens/Onboarding';
-import LoginRegister from '../Screens/LoginRegister';
-import RegisterScreen from '../Screens/RegisterScreen';
-import {createStackNavigator} from '@react-navigation/stack'
-import LoginScreen from '../Screens/LoginScreen';
-import VerifyOTP from '../Screens/VerifyOTP';
+import Scan from '../Screens/Scan'
+import BottomSheetNavigation from './BottomSheetNavigation'
 
 const Stack = createStackNavigator()
-
 const screens = [
     {
-        name: 'onBoarding',
-        component: Onboarding
+        name: 'BottomNavigation',
+        component: BottomSheetNavigation
     },
     {
-        name: 'LoginRegister',
-        component: LoginRegister
-    },
-    {
-        name: 'RegisterScreen',
-        component: RegisterScreen
-    },
-    {
-        name: 'LoginScreen',
-        component: LoginScreen
-    },
-    {
-        name: 'VerifyOTP',
-        component: VerifyOTP
-    },
+        name: 'Camera',
+        component: Scan
+    }
 ]
+
 const RootNavigation = () => {
     return (
         <Stack.Navigator
-            initialRouteName = 'onBoarding'
-            screenOptions = {{
+            initialRouteName='BottomNavigation'
+            screenOptions={{
                 headerShown:false
             }}
         >
             {
                 screens.map((item, index) => {
-                    return (
+                    return(
                         <Stack.Screen 
                             key={index}
                             name={item.name}
-                            component={item.component}
+                            component = {item.component}
                         />
                     )
                 })
