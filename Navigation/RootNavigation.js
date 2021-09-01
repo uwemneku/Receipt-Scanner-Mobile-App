@@ -1,6 +1,6 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import Scan from '../Screens/Scan'
 import ViewReciept from '../Screens/ViewReciept'
 import BottomSheetNavigation from './BottomSheetNavigation'
@@ -27,6 +27,7 @@ const RootNavigation = () => {
             initialRouteName='BottomNavigation'
             screenOptions={{
                 headerShown:false,
+                // This property says how the screens animate into the screen
                 ...TransitionPresets.ModalSlideFromBottomIOS,
             }}
         >

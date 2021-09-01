@@ -1,6 +1,5 @@
-import { useTheme } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import CustomButton from '../Components/CustomButton';
 import { switchTheme } from '../reducers/themeSlice';

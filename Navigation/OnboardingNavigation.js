@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import Onboarding from '../Screens/Onboarding';
 import LoginRegister from '../Screens/LoginRegister';
 import RegisterScreen from '../Screens/RegisterScreen';

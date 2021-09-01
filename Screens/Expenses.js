@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { ScrollView, StatusBar, StyleSheet, TextInput, View } from 'react-native'
 import ExpenseItem from '../Components/ExpenseItem'
 import { Ionicons } from '@expo/vector-icons';
 import Typography from '../Components/Typography';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
 // const allReciepts = [
@@ -79,24 +79,16 @@ import { useSelector } from 'react-redux';
 // ]
 
 const Expenses = () => {
-    const navigation = useNavigation()
     const initialState = useSelector(state => state.recieptSlice)
     const [allReciepts, setAllReciepts] = useState(initialState)
-    const {primary:primaryColor, 
-        secondary:secondaryColor, 
-        text:textColor,
-        background:backgroundColor}  = useSelector(state => state.themeSlice)
+    const {text:textColor, background:backgroundColor} = useSelector(state => state.themeSlice)
+         
 
     useEffect(() => {
         setAllReciepts(initialState)
     }, [initialState])
 
     const handleSearch = (e) => {
-        console.log(initialState.map(item =>  ({
-            date: item.date,
-            reciepts: item.reciepts.filter(j => j.merchant.toLowerCase().includes(e.toLowerCase()) )
-        }) ))
-
         setAllReciepts(
             initialState.map(item =>  ({
                 date: item.date,

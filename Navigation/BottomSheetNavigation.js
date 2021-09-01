@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Home from '../Screens/Home'
 import Scan from '../Screens/Scan'
@@ -7,7 +7,6 @@ import Expenses from '../Screens/Expenses'
 import Account from '../Screens/Account';
 import { Entypo, FontAwesome5 } from '@expo/vector-icons';
 import Typography from '../Components/Typography'
-import { useTheme } from '@react-navigation/native'
 import { useSelector } from 'react-redux'
 
 const BottomSheet = createBottomTabNavigator()

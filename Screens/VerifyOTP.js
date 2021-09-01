@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Alert, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Alert, Pressable, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import Typography from '../Components/Typography'
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import CustomButton from '../Components/CustomButton';

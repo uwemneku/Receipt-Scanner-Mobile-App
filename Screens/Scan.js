@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Pressable, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Pressable, Image, StatusBar } from 'react-native';
 import { Camera } from 'expo-camera';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { AntDesign, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -43,7 +43,6 @@ export default function Scan() {
         hasPermission &&
         setTimeout(() => {
             translateY.value = withSpring(1)
-            console.log(translateY.value);
         }, 200);
     }, [hasPermission])
 
@@ -66,7 +65,6 @@ export default function Scan() {
 
     const handleImageCapture = async() => {
         const result = await cameraRef.current.takePictureAsync({quality:1, base64:true})
-        console.log(result.uri);
         setImageUri(result.uri)
     }
 

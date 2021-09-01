@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import {Dimensions, Image, StyleSheet, View } from 'react-native'
+import {Dimensions, StyleSheet, View } from 'react-native'
 import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 const W = Dimensions.get('screen').width

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { Alert, Dimensions, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, Dimensions, Image, Pressable, ScrollView, StyleSheet, View } from 'react-native'
 import Typography from '../Components/Typography'
 import { Ionicons } from '@expo/vector-icons';
 import Divider from '../Components/Divider';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import {receiptsImage} from '../assets/Images'
-import Animated, { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteReciept } from '../reducers/recieptSlice';
 
@@ -23,7 +22,6 @@ const ViewReciept = () => {
             bottomOffset.value = 0
         }, 250);
 
-        console.log(imageUri);
     }, [])
 
     const contentAnimatedStyle = useAnimatedStyle(() => ({

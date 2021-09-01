@@ -11,7 +11,6 @@ const slice = createSlice({
     },
     reducers:{
         switchTheme: (state, action) => {
-            console.log(action.payload);
             switch (action.payload) {
                 case 'dark':
                     state.background = 'black'

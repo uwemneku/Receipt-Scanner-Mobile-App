@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Image, View, Platform } from 'react-native';
+import { useEffect } from 'react';
+import { Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function useImagePicker(setImageUri) {
@@ -22,7 +22,6 @@ export default function useImagePicker(setImageUri) {
       quality: 1,
     });
 
-    console.log(result);
 
     if (!result.cancelled) {
       setImageUri(result.uri)
