@@ -6,7 +6,7 @@ import Divider from '../Components/Divider';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {receiptsImage} from '../assets/Images'
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteReciept } from '../reducers/recieptSlice';
 
 const H = Dimensions.get('window').height
@@ -14,6 +14,7 @@ const ViewReciept = () => {
     const navigation = useNavigation()
     const dispatch = useDispatch()
     const {imageUri, id, date} = useRoute().params
+    const {background:backgroundColor}  = useSelector(state => state.themeSlice)
     const bottomOffset = useSharedValue(-500)
 
     useEffect(() => {
@@ -59,7 +60,7 @@ const ViewReciept = () => {
         )
     }
     return (
-        <View style={styles.container} >
+        <View style={[styles.container, {backgroundColor:backgroundColor}]} >
             {/* Header starts here */}
             <View style={styles.header} >
                 <Pressable onPress={handleNavigation} >

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import Onboarding from '../Screens/Onboarding';
 import LoginRegister from '../Screens/LoginRegister';
 import RegisterScreen from '../Screens/RegisterScreen';
-import {createStackNavigator} from '@react-navigation/stack'
+import {createStackNavigator, TransitionPresets, TransitionSpecs} from '@react-navigation/stack'
 import LoginScreen from '../Screens/LoginScreen';
 import VerifyOTP from '../Screens/VerifyOTP';
 import Scan from '../Screens/Scan';
@@ -41,7 +41,13 @@ const OnboardingNavigation = () => {
         <Stack.Navigator
             initialRouteName = 'onBoarding'
             screenOptions = {{
-                headerShown:false
+                headerShown:false,
+                transitionSpec:{
+                    open: TransitionSpecs.BottomSheetSlideInSpec,
+                    close: TransitionSpecs.RevealFromBottomAndroidSpec,
+                },
+                ...TransitionPresets.SlideFromRightIOS,
+
             }}
         >
             {

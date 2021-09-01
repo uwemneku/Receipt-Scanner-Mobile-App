@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import React, { useEffect } from 'react'
-import {  Dimensions, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import {  Dimensions, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import Section from '../Components/Section'
 import Typography from '../Components/Typography'
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import RecieptDetails from '../Components/RecieptDetails'
 import Animated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import { useSelector } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import ClickableIcon from '../Components/ClickableIcon'
 
 const H = Dimensions.get('window').height
 const reciepts = [
@@ -34,14 +36,11 @@ const reciepts = [
 ]
 const Home = () => {
     const offSetY = useSharedValue(100)
+    const navigation = useNavigation()
     const {primary:primaryColor, 
             secondary:secondaryColor, 
             text:textColor,
             background:backgroundColor}  = useSelector(state => state.themeSlice)
-
-    useEffect(() => {
-        console.log(primaryColor, secondaryColor);
-    }, [primaryColor, secondaryColor])
 
     const scrollHandler = useAnimatedGestureHandler({
         onStart:(_, ctx)=>{
@@ -129,7 +128,7 @@ const Home = () => {
                                             color='gray'
                                         />
                                     </View>
-                                    <FontAwesome name="star" size={24} color="gold" />
+                                    <ClickableIcon activeColor='gold' disabledColor='gray' name='star' initialState={true} />
                                 </View>
                                 <View style={styles.list} >
                                     <View style={styles.circles} />
@@ -146,6 +145,7 @@ const Home = () => {
                                             color='gray'
                                         />
                                     </View>
+                                    <ClickableIcon activeColor='gold' disabledColor='gray' name='star'  />
                                 </View>
                             </Section>
                             
@@ -154,10 +154,10 @@ const Home = () => {
                                     horizontal={true}
                                     contentContainerStyle={{paddingVertical:10}}
                                 >
-                                    <View style={styles.receipts } >
+                                    <Pressable style={styles.receipts } onPress={() => navigation.navigate('Camera')} >
                                         <Ionicons name="ios-camera-outline" size={40} color="white" />
                                         <Typography text='Upload reciepts' fontSize={12} color="white" />
-                                    </View>
+                                    </Pressable>
                                     {
                                         reciepts.map((item, index) => {
                                             return(

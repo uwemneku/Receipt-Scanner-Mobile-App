@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Scan from '../Screens/Scan'
@@ -26,7 +26,8 @@ const RootNavigation = () => {
         <Stack.Navigator
             initialRouteName='BottomNavigation'
             screenOptions={{
-                headerShown:false
+                headerShown:false,
+                ...TransitionPresets.ModalSlideFromBottomIOS,
             }}
         >
             {
