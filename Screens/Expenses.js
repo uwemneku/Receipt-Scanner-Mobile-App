@@ -1,8 +1,9 @@
 import React from 'react'
-import { ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Pressable, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native'
 import ExpenseItem from '../Components/ExpenseItem'
 import { Ionicons } from '@expo/vector-icons';
 import Typography from '../Components/Typography';
+import { useNavigation } from '@react-navigation/native';
 
 const expensesData = [
     {
@@ -77,6 +78,10 @@ const expensesData = [
 ]
 
 const Expenses = () => {
+    const navigation = useNavigation()
+    const handleNavigation = () => {
+        navigation.navigate('ViewReciept')
+    }
     return (
         <View style={styles.container} >
             <StatusBar backgroundColor='white' />
@@ -92,9 +97,9 @@ const Expenses = () => {
                                 <Typography text={item.date} bold />
                                 {
                                     item.reciepts.map((item, index) => (
-                                        <View key={index}  style={{marginVertical:5}} >
+                                        <Pressable key={index}  style={{marginVertical:5}} onPress={handleNavigation} >
                                             <ExpenseItem tag={item.tag} amount={item.amount} merchant={item.merchant} imageUri={item.imageUri} />
-                                        </View>
+                                        </Pressable>
                                     ))
                                 }
                             </View>

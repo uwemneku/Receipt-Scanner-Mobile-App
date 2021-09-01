@@ -1,3 +1,8 @@
-const y = [1, 3, 3].concat([])
+import {configureStore} from '@reduxjs/toolkit'
+import authenticationReducer from './reducers/authenticationSlice'
 
-console.log(y)
+export default configureStore({
+    reducer:{
+        authecationSlice : authenticationReducer
+    }
+})

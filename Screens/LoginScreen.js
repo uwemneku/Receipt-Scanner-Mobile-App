@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
-import { Dimensions, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import {secondaryLogo, primaryLogo} from '../assets/Images'
+import React from 'react'
+import { Dimensions, Image, Pressable, ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import {secondaryLogo} from '../assets/Images'
 import CustomButton from '../Components/CustomButton'
 import Typography from '../Components/Typography'
-import { Entypo } from '@expo/vector-icons';
 import PassWordInput from '../Components/PasswordInput'
 import { useNavigation } from '@react-navigation/native'
+import useAuthenticateUser from '../hooks/useAuthenticateUser'
 
 const H = Dimensions.get('window').height
 const LoginScreen = () => {
     const navigation = useNavigation()
+    const login = useAuthenticateUser()
+
+    const handleLogin = () => {
+        login()
+    }
     return (
         <ScrollView style={{flex:1, backgroundColor:'white'}} contentContainerStyle={{height:H, padding:20, justifyContent:'center'}} showsVerticalScrollIndicator={false} >
             <View style={styles.container} >
@@ -21,7 +26,7 @@ const LoginScreen = () => {
                 <PassWordInput />
             </View>
             <View style={{width:'100%', marginVertical:40}} >
-                <TouchableOpacity activeOpacity={0.8} >
+                <TouchableOpacity activeOpacity={0.8} onPress={handleLogin} >
                     <CustomButton title='Login' bgColor='#404CCF' />
                 </TouchableOpacity>
             </View>

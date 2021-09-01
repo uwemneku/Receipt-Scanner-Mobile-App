@@ -1,18 +1,28 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Constants } from 'react-native-unimodules';
 import RootNavigation from './Navigation/RootNavigation';
+import OnboardingNavigation from './Navigation/OnboardingNavigation';
+import { useSelector } from 'react-redux';
+import LoadingModal from './Components/LoadingModal';
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const isLoggedIn = useSelector(state => state.authecationSlice.loggedIn)
+  
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor='#404CCF' />
       <NavigationContainer>
-        <RootNavigation />
+        {
+          isLoggedIn ?
+          <RootNavigation />
+          :
+          <OnboardingNavigation />
+        }
       </NavigationContainer>
+      <LoadingModal />
     </View>
   );
 }

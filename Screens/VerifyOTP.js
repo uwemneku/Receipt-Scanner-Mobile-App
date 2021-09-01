@@ -1,13 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Typography from '../Components/Typography'
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import CustomButton from '../Components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import useAuthenticateUser from '../hooks/useAuthenticateUser';
 
 const VerifyOTP = () => {
     const [OTP, setOTP] = useState(['', '', '', ''])
     const navigation = useNavigation()
+    const login = useAuthenticateUser()
+
+    const handleLogin = () => {
+        OTP.join('').length > 3 ? login()
+        :
+        Alert.alert(
+            '',
+            'Please enter any random four digits',
+
+        )
+    }
 
     const handleTextInput = (e) => {
         e.length <= 4 && setOTP([...e.split('')])
@@ -70,15 +82,16 @@ const VerifyOTP = () => {
                 </View>
 
                 <View style={[styles.rowCenter, {justifyContent:'space-between'}]} >
-                    <Typography text="Didn’t receive an OTP?" fontSize={14}  />
+                    <Typography text="Didn’t receive an OTP?" fontSize={14}   />
                     <Pressable onPress={()=>setOTP([])} style={styles.rowCenter}>
                         <AntDesign name="reload1" size={24} color="#404CCF" style={{paddingHorizontal:10}} />
                         <Typography text="Resend" bold color="#404CCF"  />
                     </Pressable>
                 </View>
             </View>
-
-            <CustomButton title='Verify and Create Account' bgColor='#404CCF' />
+            <TouchableOpacity activeOpacity={0.8} onPress={handleLogin} >
+                <CustomButton title='Verify and Create Account' bgColor='#404CCF' />
+            </TouchableOpacity>
         </View>
     )
 }

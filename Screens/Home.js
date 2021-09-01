@@ -39,13 +39,11 @@ const Home = () => {
            ctx.startOff = offSetY.value
         },
         onActive: (_, ctx)=> {
-            // console.log(_.translationY);
             let u = ctx.startOff + _.translationY
             if(u >= -100 && u <= 100){
 
                 offSetY.value= ctx.startOff + _.translationY
             }
-            console.log(offSetY.value);
         }
     })
 

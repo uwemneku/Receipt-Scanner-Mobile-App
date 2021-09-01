@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Scan from '../Screens/Scan'
+import ViewReciept from '../Screens/ViewReciept'
 import BottomSheetNavigation from './BottomSheetNavigation'
 
 const Stack = createStackNavigator()
@@ -13,7 +14,11 @@ const screens = [
     {
         name: 'Camera',
         component: Scan
-    }
+    },
+    {
+        name: 'ViewReciept',
+        component: ViewReciept
+    },
 ]
 
 const RootNavigation = () => {
