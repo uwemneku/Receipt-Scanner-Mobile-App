@@ -1,12 +1,18 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import Typography from './Typography'
 
-const ExpenseItem = ({merchant, amount, tag, imageUri}) => {
+const ExpenseItem = ({merchant, amount, tag, imageUri, id, date}) => {
+    const navigation = useNavigation()
+    const handleNavigation = () => {
+        navigation.navigate('ViewReciept', {imageUri, id, date})
+    }
+    
     return (
-        <View style={styles.container} >
-            <View style={{width:'30%', height:'100%'}} >
-                <Image style={{width:'100%', height:'100%'}} source={{uri:"file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg"}} />
+        <Pressable onPress={handleNavigation} style={styles.container} >
+            <View style={{width:'30%', height:'100%', padding:10, borderRightWidth:2, borderRightColor:'whitesmoke'}} >
+                <Image style={{width:'100%', height:'100%'}} source={{uri:imageUri}} />
             </View>
             <View style={{flex:1, alignSelf:'flex-end', padding:10}} >
                 <Typography text={merchant} fontSize={14} /> 
@@ -17,11 +23,11 @@ const ExpenseItem = ({merchant, amount, tag, imageUri}) => {
                     <Typography text={tag} fontSize={12}  />
                 </View>
             </View>
-        </View>
+        </Pressable>
     )
 }
 
-export default ExpenseItem
+export default React.memo(ExpenseItem)
 
 const styles = StyleSheet.create({
     container:{

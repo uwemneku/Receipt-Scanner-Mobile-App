@@ -2,8 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Typography from './Typography'
 import { FontAwesome } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 const Section = ({title, titleIcon, children}) => {
+    const {text:textColor} = useSelector(state => state.themeSlice)
     return (
         <View style={styles.section} >
             <View style={styles.title} >
@@ -11,6 +13,7 @@ const Section = ({title, titleIcon, children}) => {
                     text={title}
                     bold
                     fontSize={25}
+                    color={textColor}
                 />
                 {titleIcon}
             </View>
@@ -27,7 +30,6 @@ const styles = StyleSheet.create({
     section:{
         paddingHorizontal:20,
         paddingVertical:5,
-        backgroundColor:'white'
     },
     title:{
         paddingVertical:10,

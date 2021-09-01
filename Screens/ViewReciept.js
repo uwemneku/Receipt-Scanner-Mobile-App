@@ -3,13 +3,17 @@ import { Alert, Dimensions, Image, Pressable, ScrollView, StyleSheet, Text, View
 import Typography from '../Components/Typography'
 import { Ionicons } from '@expo/vector-icons';
 import Divider from '../Components/Divider';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {receiptsImage} from '../assets/Images'
 import Animated, { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
+import { useDispatch } from 'react-redux';
+import { deleteReciept } from '../reducers/recieptSlice';
 
 const H = Dimensions.get('window').height
 const ViewReciept = () => {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+    const {imageUri, id, date} = useRoute().params
     const bottomOffset = useSharedValue(-500)
 
     useEffect(() => {
@@ -17,7 +21,10 @@ const ViewReciept = () => {
         setTimeout(() => {
             bottomOffset.value = 0
         }, 250);
+
+        console.log(imageUri);
     }, [])
+
     const contentAnimatedStyle = useAnimatedStyle(() => ({
         bottom: withTiming(bottomOffset.value, {duration:500})
     }))
@@ -32,7 +39,24 @@ const ViewReciept = () => {
         navigation.goBack()
     }
     const handleRecieptDelete = () => {
-        // Alert.
+        Alert.alert(
+            '',
+            'Do you want to delete this reciept',
+            [
+                {
+                    text:'Yes',
+                    style:'destructive',
+                    onPress: ()=>{
+                        dispatch(deleteReciept({id, date}))
+                        navigation.goBack()
+                    }
+                },
+                {
+                    text:'No',
+                    onPress:()=>{}
+                }
+            ]
+        )
     }
     return (
         <View style={styles.container} >
@@ -46,8 +70,8 @@ const ViewReciept = () => {
             {/* Header ends here */}
 
             <View style={styles.content} >
-                <Pressable style={{height:'100%', paddingHorizontal:20}} onPress={handleImagePress} >
-                    <Image resizeMode='contain' style={{width:'100%', height:'100%'}}  source={receiptsImage} />
+                <Pressable style={{height:'100%', paddingHorizontal:20,}} onPress={handleImagePress} >
+                    <Image resizeMode='contain' style={{width:'100%', height:H*0.7,}}  source={{uri:imageUri}} />
                 </Pressable>
                 <Animated.View  style={[styles.details, contentAnimatedStyle]} >
                     <ScrollView contentContainerStyle={{padding:10}} >
@@ -57,9 +81,9 @@ const ViewReciept = () => {
                         <Info title='Category' info='Meal & Entertainment'  />
                         <Info title='Method of paymnet' info='Card'  />
                     </ScrollView>
-                    <View style={{padding:20}} >
+                    <Pressable onPress={handleRecieptDelete} style={{padding:20}}>
                         <Typography text="Delete Reciept" bold color='red' textAlign='center' />
-                    </View>
+                    </Pressable>
                 </Animated.View>
                 <Pressable onPress={handleUpIconPress}  style={styles.circle} >
                     <Ionicons name="ios-arrow-up-outline" size={30} color="black" style={{marginRight:10}}  />

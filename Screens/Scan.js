@@ -5,6 +5,8 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { AntDesign, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import Animated, { Extrapolate, interpolate, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import useImagePicker from '../hooks/useImagePicker';
+import { useDispatch } from 'react-redux';
+import { addReciept } from '../reducers/recieptSlice';
 
 export default function Scan() {
   const [hasPermission, setHasPermission] = useState(null);
@@ -16,6 +18,7 @@ export default function Scan() {
   const focused = useIsFocused()
   const navigation = useNavigation()
   const translateY = useSharedValue(0)
+  const dispatch = useDispatch()
   
   const toggleFlashLight = () => {
       setIsFlashLightON(!isFlashLightON)
@@ -37,11 +40,29 @@ export default function Scan() {
     }, []);
     
     useEffect(() => {
+        hasPermission &&
         setTimeout(() => {
             translateY.value = withSpring(1)
             console.log(translateY.value);
         }, 200);
-    }, [])
+    }, [hasPermission])
+
+    const handleNavigation = () => {
+        if (imageUri !== null){
+            const date = 'Jun 25'
+            const newData = {
+                tag:'New Image',
+                imageUri: imageUri,
+                merchant: 'Wintinkin',
+                amount: 'N16,00',
+                id:Date.now()
+            
+            }
+            dispatch(addReciept({newData, date}))
+            imageUri && navigation.navigate('Expenses')
+        }
+        
+    }
 
     const handleImageCapture = async() => {
         const result = await cameraRef.current.takePictureAsync({quality:1, base64:true})
@@ -49,14 +70,6 @@ export default function Scan() {
         setImageUri(result.uri)
     }
 
-
-
-  if (hasPermission === null) {
-    return <View />;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
   return (
     <View style={styles.container}>
         <StatusBar backgroundColor='#F69D34' />
@@ -90,7 +103,7 @@ export default function Scan() {
             <View style={[styles.button, {transform:[{scale:1.4,}], backgroundColor:'#404CCF', borderWidth:2, borderColor:'white'}]} >
                 <Pressable onPress={handleImageCapture} style={[styles.button, {transform:[{scale:0.8}]}]} />
             </View>
-            <Pressable style={styles.button} >
+            <Pressable style={styles.button} onPress={handleNavigation}  >
                 <Ionicons name="checkmark-outline" size={24} color="#404CCF" />
             </Pressable>
         </Animated.View>

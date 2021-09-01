@@ -7,6 +7,8 @@ import Expenses from '../Screens/Expenses'
 import Account from '../Screens/Account';
 import { Entypo, FontAwesome5 } from '@expo/vector-icons';
 import Typography from '../Components/Typography'
+import { useTheme } from '@react-navigation/native'
+import { useSelector } from 'react-redux'
 
 const BottomSheet = createBottomTabNavigator()
 const screens = [
@@ -32,15 +34,19 @@ const screens = [
     },
 ]
 const BottomSheetNavigation = () => {
+    const {primary:primaryColor, 
+        secondary:secondaryColor, 
+        text:textColor,
+        background:backgroundColor}  = useSelector(state => state.themeSlice)
     return (
         <BottomSheet.Navigator
             initialRouteName = 'Home'
             tabBar = {({navigation, state}) => (
-                <View style={styles.tabBar} >
+                <View style={[styles.tabBar, {backgroundColor:backgroundColor}]} >
                     {
                         screens.map((item, index)=>{
                             const isFocused = state.index === index
-                            const color = isFocused ? '#404CCF' : 'gray'
+                            const color = isFocused ? primaryColor : 'gray'
                             return (
                             <View key={item.name} >
                                 <Pressable onPress={()=>navigation.navigate(item.name === 'Scan' ? 'Camera' : item.name)} style={{justifyContent:'center', alignItems:'center'}}  >
@@ -52,6 +58,7 @@ const BottomSheetNavigation = () => {
                     }
                 </View>
             )}
+            
         >
             {
                 screens.map((item, index) => {
@@ -83,7 +90,6 @@ const styles = StyleSheet.create({
         flexDirection:'row', 
         alignItems:'center', 
         justifyContent:'space-around',
-        backgroundColor:'white', 
         elevation:30
     },
 

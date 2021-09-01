@@ -1,12 +1,13 @@
 import { LinearGradient } from 'expo-linear-gradient'
-import React from 'react'
-import {  Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import {  Dimensions, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import Section from '../Components/Section'
 import Typography from '../Components/Typography'
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import RecieptDetails from '../Components/RecieptDetails'
 import Animated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
 import { PanGestureHandler } from 'react-native-gesture-handler'
+import { useSelector } from 'react-redux'
 
 const H = Dimensions.get('window').height
 const reciepts = [
@@ -33,6 +34,14 @@ const reciepts = [
 ]
 const Home = () => {
     const offSetY = useSharedValue(100)
+    const {primary:primaryColor, 
+            secondary:secondaryColor, 
+            text:textColor,
+            background:backgroundColor}  = useSelector(state => state.themeSlice)
+
+    useEffect(() => {
+        console.log(primaryColor, secondaryColor);
+    }, [primaryColor, secondaryColor])
 
     const scrollHandler = useAnimatedGestureHandler({
         onStart:(_, ctx)=>{
@@ -57,9 +66,9 @@ const Home = () => {
     }))
     return (
         <PanGestureHandler activeOffsetX={50} activeOffsetY={[-5, 5]}  onGestureEvent={scrollHandler} >
-            <Animated.View>
-
+            <Animated.View  >
                 <Animated.View style={[styles.header, animatedHeaderStyle]}>
+                    <StatusBar backgroundColor={primaryColor} barStyle='light-content' />
                     <LinearGradient
                         colors={['#404CCF', '#0BB4EF']}
                         locations={[0.5, 1]}
@@ -77,43 +86,33 @@ const Home = () => {
                         <View style={styles.card} >
                             <Typography 
                                 text='Today’s Expenditure'
-                                color='#404CCF'
+                                color={primaryColor}
                                 fontSize={14}
                             />
-                                <View style={{flexDirection:'row', alignItems:'flex-end'}} >
-                                    <View style={{alignSelf:'flex-start', opacity:0.8}} >
-                                        <Typography 
-                                            text='N'
-                                            color='#404CCF'
-                                            bold
-                                        />
-                                    </View>
-                                    <View style={{height:50, alignItems:'flex-end', justifyContent:'flex-end'}} >
-                                        <Typography 
-                                            text='220252'
-                                            color='#404CCF'
-                                            bold
-                                            fontSize={30}
-                                        />
-                                    </View>
-                                    <View>
-                                        <Typography 
-                                            text='.36'
-                                            color='#404CCF'
-                                            bold
-                                        />
-                                    </View>
-                                </View>
-                            <View>
-
+                            <View style={{flexDirection:'row', alignItems:'center'}} >
+                               <Typography 
+                                   text='N'
+                                   color={primaryColor}
+                                   bold
+                               />
+                               <Typography 
+                                   text='220252'
+                                   color={primaryColor}
+                                   bold
+                                   fontSize={30}
+                               />
+                               <Typography 
+                                   text='.36'
+                                   color={primaryColor}
+                                   bold
+                                />
                             </View>
                         </View>
-                        <View style={[styles.card, {height:'10%', marginTop:-10, width:'80%', backgroundColor:'#22D566', zIndex:1}]} />
+                        <View style={[styles.card, {height:'10%', marginTop:-10, width:'80%', backgroundColor:'#22D566', zIndex:1, alignSelf:'center'}]} />
                     </LinearGradient>
                 </Animated.View>
                 <View style={{height:H * 0.5}} >
-                    {/* <PanGestureHandler activeOffsetX={1000} activeOffsetY={-5, 5} onGestureEvent={scrollHandler} > */}
-                        <Animated.View style={{paddingBottom:100, backgroundColor:'white'}} >
+                        <Animated.View style={{paddingBottom:100, backgroundColor:backgroundColor}} >
                             <Section title="Reminder" titleIcon={<Ionicons name="add-outline" size={24} color="gray"/>}>
                                 <View style={styles.list} >
                                     <View style={styles.circles} />
@@ -122,6 +121,7 @@ const Home = () => {
                                             text ="Get Reciepts up-to-date"
                                             bold
                                             fontSize={20}
+                                            color={textColor}
                                         />
                                         <Typography 
                                             text ="Due on June 29 2050"
@@ -138,6 +138,7 @@ const Home = () => {
                                             text ="Export Expense Stats"
                                             bold
                                             fontSize={20}
+                                            color={textColor}
                                         />
                                         <Typography 
                                             text ="Due on June 29 2050"
@@ -167,7 +168,6 @@ const Home = () => {
                                 </ScrollView>
                             </Section>
                         </Animated.View>
-                    {/* </PanGestureHandler> */}
             
                 </View>
         
