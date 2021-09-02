@@ -1,9 +1,15 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Typography from './Typography'
-import { FontAwesome } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 
+/**
+ * 
+ * @param {object} props 
+ * @param {string} props.title 
+ * @param {JSX.Element} titleIcon  
+ * @returns 
+ */
 const Section = ({title, titleIcon, children}) => {
     const {text:textColor} = useSelector(state => state.themeSlice)
     return (

@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react'
 import { Modal, StyleSheet, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleLoadingModal } from '../reducers/authenticationSlice'
+import { useSelector } from 'react-redux'
 
+/**
+ * Renders a modal with a spinning circle whenever showLoadingModal (a redux state) is true
+ */
 const LoadingModal = () => {
     const animtedValue = useSharedValue(0)
     const visibility = useSelector(state => state.authecationSlice.showLoadingModal)
-    const dispatch = useDispatch()
 
     const spinningStyle = useAnimatedStyle(() => ({
         transform:[{rotate: `${animtedValue.value}deg`}]
     }))
-
-    const closeModal = () => {
-        dispatch(toggleLoadingModal(false))
-    }
 
     useEffect(() => {
         //This effect is used because withReapet causes the app to crash
@@ -51,8 +48,8 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     loading:{
-        width:100,
-        height:100,
+        width:50,
+        height:50,
         borderRadius:100,
         borderWidth:5,
         borderTopColor:'#404CCF',

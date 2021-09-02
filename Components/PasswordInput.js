@@ -3,6 +3,9 @@ import { Pressable, StyleSheet, TextInput, View } from 'react-native'
 import Typography from './Typography'
 import { Entypo } from '@expo/vector-icons';
 
+/**
+ * Renders text input for passwords and manages password visibility state
+ */
 const PassWordInput = React.memo(() => {
     const [passWordVisibility, setPassWordVisibility] = useState(false)
     const togglePassword = () => {

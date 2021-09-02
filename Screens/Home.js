@@ -75,6 +75,8 @@ const Home = () => {
             <Animated.View  >
                 <Animated.View style={[styles.header, animatedHeaderStyle]}>
                     <StatusBar backgroundColor={primaryColor} barStyle='light-content' />
+
+                    {/* Header starts here */}
                     <LinearGradient
                         colors={['#404CCF', '#0BB4EF']}
                         locations={[0.5, 1]}
@@ -116,7 +118,10 @@ const Home = () => {
                         </View>
                         <View style={[styles.card, {height:'10%', marginTop:-10, width:'80%', backgroundColor:'#22D566', zIndex:1, alignSelf:'center'}]} />
                     </LinearGradient>
+                    {/* Header ends here */}
+
                 </Animated.View>
+                
                 <View style={{height:H * 0.5}} >
                         <Animated.View style={{paddingBottom:100, backgroundColor:backgroundColor}} >
                             <Section title="Reminder" titleIcon={<Ionicons name="add-outline" size={24} color="gray"/>}>

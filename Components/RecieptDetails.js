@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Typography from './Typography'
 
+/**
+ * Renders details of reciepts on the Home Screen 
+ */
 const RecieptDetails = ({date, amount, merchant}) => {
     return (
         <View style={styles.receipts} >

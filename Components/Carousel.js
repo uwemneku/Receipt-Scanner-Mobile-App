@@ -4,6 +4,9 @@ import Animated, { Extrapolate, interpolate, useAnimatedScrollHandler, useAnimat
 
 const W = Dimensions.get('screen').width
 
+/**
+ * This renders a crousel with a scroll indicator that scroll automatically
+ */
 const Carousel = ({children}) => {
     const scrollX = useSharedValue(0)
     const scrollRef = useRef();
@@ -14,8 +17,11 @@ const Carousel = ({children}) => {
         }
     })
 
+    //This starts the scrolling and end child is scrolled into view by
+    //a distance that is equal to it's index multiplied by the width of the screen#
+    // The width of the screen was used because each of the child occupies the full screen
     useEffect(() => {
-        let index = 0
+        let index = 0 
         const timer = setInterval(() => {
             index = index > children.length-2 ? 0: index+1 
             scrollRef.current.scrollTo({x:W*index, y:0, animated:true})
@@ -50,6 +56,13 @@ const Carousel = ({children}) => {
     )
 }
 
+/**
+ * Renders the slider inicator for the componenet above. 
+ * It's opacity is directly proportional of the animated value and its index
+ * @param {object} props
+ * @param {Animated.SharedValue<number>} props.animatedValue
+ * @param {number} props.index The index of the componenet that it represents
+ */
 const SliderDots = ({animatedValue, index}) => {
     const animatedStyle = useAnimatedStyle(() => ({
         opacity: interpolate(animatedValue.value,

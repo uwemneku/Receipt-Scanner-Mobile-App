@@ -1,82 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, StatusBar, StyleSheet, TextInput, View } from 'react-native'
+import { ScrollView, StyleSheet, TextInput, View } from 'react-native'
 import ExpenseItem from '../Components/ExpenseItem'
 import { Ionicons } from '@expo/vector-icons';
 import Typography from '../Components/Typography';
-import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 
-// const allReciepts = [
-//     {
-//         date: 'Jul 26',
-//         reciepts:[
-//             {
-//                 tag: 'Others',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Movie house',
-//                 amount: 'N16,444'
-//             },
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//             {
-//                 tag: 'Movies',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//         ]
-//     },
-//     {
-//         date: 'Jul 28',
-//         reciepts:[
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//         ]
-//     },
-//     {
-//         date: 'Jul 30',
-//         reciepts:[
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//             {
-//                 tag: 'Meal and Entertainment',
-//                 imageUri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540uwemneku%252FReceipt_scanner/ImagePicker/b5807c56-a0dc-4009-b5da-610066410a99.jpg",
-//                 merchant:'Chicken Republic',
-//                 amount: 'N16,444'
-//             },
-//         ]
-//     }
-// ]
 
 const Expenses = () => {
     const initialState = useSelector(state => state.recieptSlice)
@@ -100,11 +28,14 @@ const Expenses = () => {
     
     return (
         <View style={[styles.container, {backgroundColor:backgroundColor}]} >
-            <StatusBar backgroundColor='white' />
+
+            {/* Text input starts here */}
             <View style={styles.input }>
-                <TextInput onChangeText={handleSearch} style={{flex:1}} placeholder='Search Merchant' />
+                <TextInput placeholderTextColor={textColor} onChangeText={handleSearch} style={{flex:1, color:textColor}} placeholder='Search Merchant' />
                 <Ionicons name="md-mic-sharp" size={24} color="gray" />
             </View>
+            {/* Text Input end here */}
+
             <View>
                 <ScrollView  contentContainerStyle={{padding:20, paddingBottom:100}} >
                     {
