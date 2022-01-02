@@ -8,3 +8,9 @@ I used this app to learn basic authentication navigation and how to implement re
 ![dashboard][dashboard]
 
 [dashboard]: screenshots/dashboard.png
+
+
+## Features
+- [x] <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/Screens/Scan.js">Custom camera interface</a>
+- [x]  Custom <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/Navigation/RootNavigation.js">animation screen transition </a> using preset animation templates from reanimated2
+- [x] <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/Screens/ViewReciept.js">Screen animations</a> using reanimated2 
