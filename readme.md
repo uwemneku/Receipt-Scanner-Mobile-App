@@ -14,3 +14,20 @@ I used this app to learn basic authentication navigation and how to implement re
 - [x] <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/Screens/Scan.js">Custom camera interface</a>
 - [x]  Custom <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/Navigation/RootNavigation.js">animation screen transition </a> using preset animation templates from reanimated2
 - [x] <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/Screens/ViewReciept.js">Screen animations</a> using reanimated2 
+- [x] <a href="https://github.com/uwemneku/Receipt-Scanner-Mobile-App/blob/main/hooks/useImagePicker.js">custom  hooks</a> to pick image from storage
+
+
+## Getting Started
+Clone the reopens 
+
+```properties
+    git clone https://github.com/uwemneku/Receipt-Scanner-Mobile-App.git
+```
+Install dependencies
+```properties
+    yarn
+```
+start the app
+```properties
+    yarn android
+```
